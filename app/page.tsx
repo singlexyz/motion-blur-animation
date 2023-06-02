@@ -45,21 +45,17 @@ const MotionFilter = forwardRef(function MotionFilter(
   }))
   return (
     <>
-      {createPortal(
-        <svg className="w-0 h-0 absolute">
-          <defs>
-            <filter id={id}>
-              <feGaussianBlur
-                ref={filterRef}
-                in="SourceGraphic"
-                stdDeviation="0,0"
-              />
-            </filter>
-          </defs>
-        </svg>,
-        document.body,
-        id
-      )}
+      <svg className="w-0 h-0 absolute">
+        <defs>
+          <filter id={id}>
+            <feGaussianBlur
+              ref={filterRef}
+              in="SourceGraphic"
+              stdDeviation="0,0"
+            />
+          </filter>
+        </defs>
+      </svg>
       {children(filter)}
     </>
   )

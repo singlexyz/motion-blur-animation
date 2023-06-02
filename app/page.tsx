@@ -83,9 +83,10 @@ export default function Home() {
   }))
   const ref = useRef<{ update: (x: number, y: number) => void }>(null)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 overflow-hidden">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 overflow-hidden">
       <div>
-        <Link href="/blog/abc">to abc</Link>
+        <Link href="/blog">to blog</Link>
+        <Link href="/blog/new">to blog new</Link>
       </div>
       <MotionFilter ref={ref}>
         {(filter) => (

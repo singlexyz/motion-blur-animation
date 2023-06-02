@@ -1,5 +1,6 @@
 "use client"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 import { Label } from "@/components/ui/label"
 import * as React from "react"
 import { Button } from "@/components/ui/button"
@@ -83,6 +84,9 @@ export default function Home() {
   const ref = useRef<{ update: (x: number, y: number) => void }>(null)
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 overflow-hidden">
+      <div>
+        <Link href="/blog/abc">to abc</Link>
+      </div>
       <MotionFilter ref={ref}>
         {(filter) => (
           <AnimatedCard style={{ ...styles, filter }} className="w-[360px]">

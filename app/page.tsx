@@ -66,19 +66,16 @@ const MotionFilter = forwardRef(function MotionFilter(
 })
 
 export default function Home() {
-  const styles = useSpring({
+  const [styles, api] = useSpring(() => ({
     from: {
-      opacity: 0,
-      x: "-100vh"
+      x: "100vw"
     },
     to: {
-      opacity: 1,
-      x: "0vh"
+      x: "0vw"
     },
-    config: config.gentle,
     onChange(_, { springs }) {
       if (ref.current) {
-        ref.current.update(0, Math.abs(springs.x.velocity * 200))
+        ref.current.update(Math.abs(springs.x.velocity * 300), Math.abs(0))
       }
     },
     onResolve() {
@@ -86,7 +83,7 @@ export default function Home() {
         ref.current.update(0, 0)
       }
     }
-  })
+  }))
   const ref = useRef<{ update: (x: number, y: number) => void }>(null)
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 overflow-hidden">
@@ -122,7 +119,19 @@ export default function Home() {
               </form>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button variant="ghost">离开，我不配</Button>
+              <Button
+                variant="ghost"
+                onClick={() =>
+                  api.start({
+                    x: "-100vw",
+                    onResolve() {
+                      api.start({ x: "0vw", from: { x: "100vw" } })
+                    }
+                  })
+                }
+              >
+                离开，我不配
+              </Button>
               <Button className="tracking-widest">登录</Button>
             </CardFooter>
           </AnimatedCard>
